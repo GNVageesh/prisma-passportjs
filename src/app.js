@@ -25,9 +25,12 @@ app.use(
 app.use(cookies());
 
 // PASSPORTJS
-// require("./passport/local")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+require("./passport/local")(passport);
+
+// ROUTE
+app.use("/api/auth", require("./routes/user.routes"));
 
 // SERVER
 app.listen(process.env.PORT || 3000, () => {
